@@ -13,7 +13,7 @@
     <AssemblyName>Mucho-Mungus</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -42,13 +42,21 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\Damage.cs" />
+    <Compile Include="Entities\Actions\MovementAnimations.cs" />
+    <Compile Include="Entities\ICharacter.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Nez, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nez.0.9.2\lib\Nez.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -104,6 +112,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <None Include="Content\basiclevel.tmx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ball.png" />
+    <Content Include="Content\basictiles.png" />
+    <Content Include="Content\characters.png" />
+    <Content Include="Content\dead.png" />
+    <Content Include="Content\fontlarge.png" />
+    <Content Include="Content\fontsmall1.gif" />
+    <Content Include="Content\fontsmall2.gif" />
+    <Content Include="Content\things.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Characters\" />
+    <Folder Include="Content\Objects\" />
+    <Folder Include="Scenes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
