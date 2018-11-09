@@ -31,19 +31,17 @@ namespace Mucho_Mungus
 
         public void update()
         {
-           if (!Input.isKeyDown(Keys.A) && !Input.isKeyDown(Keys.S) && !Input.isKeyDown(Keys.D) && !Input.isKeyDown(Keys.W))
-            {
-                animation.pause();
-            }
-            else
-            {
-                animation.unPause();
-            }
+            DecideToPauseOrPlayAnimations();
+            MoveAndAnimate();
+            
+        }
 
-
-            // Input provides access to the keyboard here. We check for the left/right/up/down arrow keys and set the movement direction accordingly.
-            if (Input.isKeyDown(Keys.A)) {
-                if (!animation.isAnimationPlaying(MovementAnimations.Left)){
+        private void MoveAndAnimate()
+        {
+            if (Input.isKeyDown(Keys.A))
+            {
+                if (!animation.isAnimationPlaying(MovementAnimations.Left))
+                {
                     animation.play(MovementAnimations.Left);
                 }
                 velocity.X = -speed;
@@ -81,8 +79,20 @@ namespace Mucho_Mungus
             {
                 velocity.Y = 0;
             }
-            
+
             mover.move(velocity * Time.deltaTime, collider, cs);
+        }
+
+        private void DecideToPauseOrPlayAnimations()
+        {
+            if (!Input.isKeyDown(Keys.A) && !Input.isKeyDown(Keys.S) && !Input.isKeyDown(Keys.D) && !Input.isKeyDown(Keys.W))
+            {
+                animation.pause();
+            }
+            else
+            {
+                animation.unPause();
+            }
         }
     }
 }

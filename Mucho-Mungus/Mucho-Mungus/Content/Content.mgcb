@@ -94,6 +94,11 @@
 /processorParam:TextureFormat=Color
 /build:fontsmall2.gif
 
+#begin nextlevel.tmx
+/importer:
+/processor:
+/build:nextlevel.tmx
+
 #begin things.png
 /importer:TextureImporter
 /processor:TextureProcessor

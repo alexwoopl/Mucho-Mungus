@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Mucho_Mungus.Components;
 using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.Sprites;
@@ -12,40 +13,58 @@ using System.Threading.Tasks;
 
 namespace Mucho_Mungus.Content.Characters
 {
-    public class Player : ICharacter
+    public class Player : Entity, ICharacter
     {
 
         private Sprite<MovementAnimations> Animation { get; set; }
 
-        public Player()
+        public Player(String name)
         {
-        }
-
-        public Scene Spawn(Scene scene)
-        {
-            //Get the texture atlas so we can create the animations
-            List<Subtexture> subtexture = SetUpTextureAtlas(scene);
             
             //Create the player
-            var playerEntity = scene.createEntity("player", new Microsoft.Xna.Framework.Vector2(200, 200));
-            Animation = playerEntity.addComponent(new Sprite<MovementAnimations>(subtexture[0]));
+            position = new Microsoft.Xna.Framework.Vector2(200, 200);
 
-            //Add animations and movement abilities
-            SetUpAnimations(subtexture);
-            playerEntity.addComponent(new PlayerController(Animation));
-            //Set up collisions
-            var collisions = scene.findEntity("map").getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>("blockers");
-            playerEntity.addComponent(new TiledMapMover(collisions));
-            playerEntity.addComponent(new BoxCollider(16, 16));
-            
+            //Allow us to move between areas
+            this.addComponent<AreaTransitioner>();
 
-            return scene;
+
         }
+
+        public override void onAddedToScene()
+        {
+            //Set up animations and controls per scene
+            List<Subtexture> subtexture = SetUpTextureAtlas(scene);
+            Animation = this.addComponent(new Sprite<MovementAnimations>(subtexture[0]));
+            SetUpAnimations(subtexture);
+            this.addComponent(new PlayerController(Animation));
+
+
+            var collisions = scene.findEntity("map").getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>("blockers");
+            this.addComponent(new TiledMapMover(collisions));
+            this.addComponent(new BoxCollider(12, 16));
+
+
+            //Set as camera focus
+            this.addComponent<CameraMover>();
+
+        }
+
+        public override void onRemovedFromScene()
+        {
+            this.removeComponent<PlayerController>();
+            this.removeComponent<Sprite>();
+            this.removeComponent<TiledMapMover>();
+            this.removeComponent<BoxCollider>();
+            this.removeComponent<CameraMover>();
+
+        }
+
 
         private static List<Subtexture> SetUpTextureAtlas(Scene scene)
         {
             // load up the TextureAtlas that we generated with the Pipeline tool specifying individual files
             var textureAtlas = scene.content.Load<Texture2D>("characters");
+            
 
             // fetch a Subtexture from the atlas. A Subtexture consists of the Texture2D and the rect on the Texture2D this particular image ended up
             var subtexture = Subtexture.subtexturesFromAtlas(textureAtlas, 16, 16);

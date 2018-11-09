@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mucho_Mungus.Content.Characters;
+using Mucho_Mungus.Scenes;
 using Nez;
 using Nez.Tiled;
 
@@ -31,23 +32,13 @@ namespace Mucho_Mungus
         protected override void Initialize()
         {
             base.Initialize();
+           
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
             
+            var myScene = new Home();
+            myScene.addEntity(new Player("player"));
             
-            var myScene = Scene.createWithDefaultRenderer(Color.CornflowerBlue);
-            //myScene.camera.zoomIn(2);
-            var map = myScene.content.Load<TiledMap>("basiclevel");
-            var mapEntity = myScene.createEntity("map");
-            var mapComponent = mapEntity.addComponent(new TiledMapComponent(map, "blockers"));
-            
-
-
-            var player = new Player();
-            player.Spawn(myScene);
-
-            
-
             // set the scene so Nez can take over
             scene = myScene;
         }
