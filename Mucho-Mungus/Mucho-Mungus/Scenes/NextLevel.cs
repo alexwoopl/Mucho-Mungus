@@ -1,28 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Mucho_Mungus.Entities;
 using Nez;
 using Nez.Tiled;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mucho_Mungus.Scenes
 {
     public class NextLevel : ExtendedScene
     {
-        public override void initialize()
-        {
-
-            clearColor = Color.DarkOliveGreen;
-            addRenderer(new DefaultRenderer());
-
-            var map = this.content.Load<TiledMap>("nextlevel");
-            var mapEntity = this.createEntity("map");
-            var mapComponent = mapEntity.addComponent(new TiledMapComponent(map, "blockers"));
-
-            this.camera.zoomIn(2);
-        }
 
         public override List<SceneChangeMapper> getTransitions()
         {
@@ -32,6 +17,11 @@ namespace Mucho_Mungus.Scenes
             }
 
             return transitions;
+        }
+
+        internal override string getMapName()
+        {
+            return "nextLevel";
         }
     }
 }

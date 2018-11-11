@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Mucho_Mungus.Content.Characters;
+﻿using Mucho_Mungus.Entities;
 using Mucho_Mungus.Scenes;
 using Nez;
-using Nez.Tiled;
 
 namespace Mucho_Mungus
 {

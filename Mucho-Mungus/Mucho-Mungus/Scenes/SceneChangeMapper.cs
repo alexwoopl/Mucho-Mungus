@@ -11,13 +11,13 @@ namespace Mucho_Mungus.Scenes
     public class SceneChangeMapper
     {
         public Vector2 min, max;
-        public Scene sceneName;
+        public Scene scene;
 
-        public SceneChangeMapper(Vector2 min, Vector2 max, Scene sceneName)
+        public SceneChangeMapper(Vector2 min, Vector2 max, Scene scene)
         {
             this.min = min;
             this.max = max;
-            this.sceneName = sceneName;
+            this.scene = scene;
         }
     }
 }

@@ -44,8 +44,8 @@
   <ItemGroup>
     <Compile Include="Components\AreaTransitioner.cs" />
     <Compile Include="Components\CameraMover.cs" />
-    <Compile Include="Components\Damage.cs" />
     <Compile Include="Entities\Actions\MovementAnimations.cs" />
+    <Compile Include="Entities\Constants\EntityNames.cs" />
     <Compile Include="Entities\ICharacter.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Game1.cs" />
@@ -54,6 +54,7 @@
     <Compile Include="Components\PlayerController.cs" />
     <Compile Include="Scenes\ExtendedScene.cs" />
     <Compile Include="Scenes\Home.cs" />
+    <Compile Include="Scenes\Constants\MapLayerNames.cs" />
     <Compile Include="Scenes\NextLevel.cs" />
     <Compile Include="Scenes\SceneChangeMapper.cs" />
   </ItemGroup>

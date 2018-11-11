@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Mucho_Mungus.Components;
+using Mucho_Mungus.Entities;
 using Mucho_Mungus.Entities.Actions;
+using Mucho_Mungus.Entities.Constants;
+using Mucho_Mungus.Scenes;
+using Mucho_Mungus.Scenes.Constants;
 using Nez;
 using Nez.Sprites;
 using Nez.Textures;
@@ -11,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mucho_Mungus.Content.Characters
+namespace Mucho_Mungus.Entities
 {
     public class Player : Entity, ICharacter
     {
@@ -39,7 +43,7 @@ namespace Mucho_Mungus.Content.Characters
             this.addComponent(new PlayerController(Animation));
 
 
-            var collisions = scene.findEntity("map").getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>("blockers");
+            var collisions = scene.findEntity(EntityNames.Map).getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>(MapLayerNames.Blockers);
             this.addComponent(new TiledMapMover(collisions));
             this.addComponent(new BoxCollider(12, 16));
 
