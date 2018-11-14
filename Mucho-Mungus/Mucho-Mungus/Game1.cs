@@ -35,7 +35,8 @@ namespace Mucho_Mungus
             
             var myScene = new Home();
             myScene.addEntity(new Player("player"));
-            
+            myScene.addEntity(new BigBongus("bigbongus"));
+
             // set the scene so Nez can take over
             scene = myScene;
         }

@@ -33,7 +33,6 @@ namespace Mucho_Mungus
         {
             DecideToPauseOrPlayAnimations();
             MoveAndAnimate();
-            
         }
 
         private void MoveAndAnimate()
