@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Mucho_Mungus.Components;
 using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.Sprites;
@@ -7,35 +8,15 @@ using Nez.Tiled;
 
 namespace Mucho_Mungus
 {
-    internal class PlayerController : Component, IUpdatable
+    internal class PlayerController : EntityMover
     {
-
-        Sprite<MovementAnimations> animation;
         public float speed = 100f;
 
-        TiledMapMover mover;
-        BoxCollider collider;
-        Vector2 velocity;
-        TiledMapMover.CollisionState cs = new TiledMapMover.CollisionState();
-
-        public PlayerController(Sprite<MovementAnimations> animation)
+        public PlayerController(Sprite<MovementAnimations> animation) : base(animation)
         {
-            this.animation = animation;
-        }
-        
-        public override void onAddedToEntity()
-        {
-            mover = this.getComponent<TiledMapMover>();
-            collider = entity.getComponent<BoxCollider>();
         }
 
-        public void update()
-        {
-            DecideToPauseOrPlayAnimations();
-            MoveAndAnimate();
-        }
-
-        private void MoveAndAnimate()
+        internal override void MoveAndAnimate()
         {
             if (Input.isKeyDown(Keys.A))
             {
@@ -82,7 +63,7 @@ namespace Mucho_Mungus
             mover.move(velocity * Time.deltaTime, collider, cs);
         }
 
-        private void DecideToPauseOrPlayAnimations()
+        internal override void DecideToPauseOrPlayAnimations()
         {
             if (!Input.isKeyDown(Keys.A) && !Input.isKeyDown(Keys.S) && !Input.isKeyDown(Keys.D) && !Input.isKeyDown(Keys.W))
             {

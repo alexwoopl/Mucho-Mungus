@@ -38,7 +38,6 @@ namespace Mucho_Mungus.Entities
             List<Subtexture> subtexture = SetUpTextureAtlas(scene);
             Animation = this.addComponent(new Sprite<MovementAnimations>(subtexture[0]));
             SetUpAnimations(subtexture);
-            //this.addComponent(new PlayerController(Animation));
             this.addComponent(new NPCMover(Animation));
 
 

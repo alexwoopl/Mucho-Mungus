@@ -3,46 +3,22 @@ using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.AI.Pathfinding;
 using Nez.Sprites;
-using Nez.Tiled;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mucho_Mungus.Components
 {
-    public class NPCMover : Component, IUpdatable
+    public class NPCMover : EntityMover
     {
-        private Sprite<MovementAnimations> animation;
+
         public float speed = 50f;
-
-        TiledMapMover mover;
-        BoxCollider collider;
-        Vector2 velocity;
-        TiledMapMover.CollisionState cs = new TiledMapMover.CollisionState();
-
-
+        
         Point targetPosition = new Point(16, 15);
 
-        public NPCMover(Sprite<MovementAnimations> animation)
+        public NPCMover(Sprite<MovementAnimations> animation) : base(animation)
         {
-            this.animation = animation;
         }
 
-        public override void onAddedToEntity()
-        {
-            mover = this.getComponent<TiledMapMover>();
-            collider = entity.getComponent<BoxCollider>();
-        }
-
-        public void update()
-        {
-            DecideToPauseOrPlayAnimations();
-            MoveAndAnimate();
-        }
         
-        private void MoveAndAnimate()
+        internal override void MoveAndAnimate()
         {
             var graph = new AstarGridGraph(mover.collisionLayer);
             Point currentPosition = getGridPosition();
@@ -102,6 +78,7 @@ namespace Mucho_Mungus.Components
             mover.move(velocity * Time.deltaTime, collider, cs);
         }
 
+        //Just for some cheap movement, will change later.
         private void switchTargetPosition()
         {
             if(targetPosition.X == 16)
@@ -116,15 +93,9 @@ namespace Mucho_Mungus.Components
             }
         }
 
-        private Point getGridPosition()
-        {
-            var currentPosition = entity.position.ToPoint();
-            currentPosition.X = currentPosition.X / 16;
-            currentPosition.Y = (currentPosition.Y / 16) - 1;
-            return currentPosition;
-        }
 
-        private void DecideToPauseOrPlayAnimations()
+
+        internal override void DecideToPauseOrPlayAnimations()
         {
             if (velocity.X == 0 && velocity.Y == 0 )
             {
