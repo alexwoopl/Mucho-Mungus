@@ -3,6 +3,7 @@ using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.AI.Pathfinding;
 using Nez.Sprites;
+using System.Collections.Generic;
 
 namespace Mucho_Mungus.Components
 {
@@ -11,6 +12,7 @@ namespace Mucho_Mungus.Components
 
         public float speed = 50f;
         
+        //arbitrary lets fix this up later.
         Point targetPosition = new Point(16, 15);
 
         public NPCMover(Sprite<MovementAnimations> animation) : base(animation)
@@ -20,13 +22,13 @@ namespace Mucho_Mungus.Components
         
         internal override void MoveAndAnimate()
         {
-            var graph = new AstarGridGraph(mover.collisionLayer);
-            Point currentPosition = getGridPosition();
-            var path = graph.search(currentPosition, targetPosition);
 
-            if (path != null && currentPosition != targetPosition)
+            Point currentPosition = getGridPosition();
+            List<Point> pathToTargetPosition = FindAStarPath(currentPosition, targetPosition);
+
+            if (pathToTargetPosition != null && currentPosition != targetPosition)
             {
-                if (currentPosition.X < path[1].X)
+                if (currentPosition.X < pathToTargetPosition[1].X)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Right))
                     {
@@ -34,7 +36,7 @@ namespace Mucho_Mungus.Components
                     }
                     velocity.X = speed;
                 }
-                else if (currentPosition.X > path[1].X)
+                else if (currentPosition.X > pathToTargetPosition[1].X)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Left))
                     {
@@ -47,7 +49,7 @@ namespace Mucho_Mungus.Components
                     velocity.X = 0;
                 }
 
-                if (currentPosition.Y < path[1].Y)
+                if (currentPosition.Y < pathToTargetPosition[1].Y)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Down))
                     {
@@ -55,7 +57,7 @@ namespace Mucho_Mungus.Components
                     }
                     velocity.Y = speed;
                 }
-                else if (currentPosition.Y > path[1].Y)
+                else if (currentPosition.Y > pathToTargetPosition[1].Y)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Up))
                     {
@@ -76,6 +78,13 @@ namespace Mucho_Mungus.Components
             }
 
             mover.move(velocity * Time.deltaTime, collider, cs);
+        }
+
+        private List<Point> FindAStarPath(Point currentPosition, Point targetPosition)
+        {
+            var graph = new AstarGridGraph(mover.collisionLayer);
+            var path = graph.search(currentPosition, targetPosition);
+            return path;
         }
 
         //Just for some cheap movement, will change later.

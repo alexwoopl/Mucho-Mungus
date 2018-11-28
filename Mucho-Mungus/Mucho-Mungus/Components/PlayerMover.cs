@@ -8,11 +8,11 @@ using Nez.Tiled;
 
 namespace Mucho_Mungus
 {
-    internal class PlayerController : EntityMover
+    internal class PlayerMover : EntityMover
     {
         public float speed = 100f;
 
-        public PlayerController(Sprite<MovementAnimations> animation) : base(animation)
+        public PlayerMover(Sprite<MovementAnimations> animation) : base(animation)
         {
         }
 

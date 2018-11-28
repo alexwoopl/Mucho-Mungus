@@ -9,18 +9,15 @@ using Nez.Textures;
 using Nez.Tiled;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mucho_Mungus.Entities
 {
-    public class BigBongus : Entity, ICharacter
+    public class BigBongus : Entity
     {
 
         private Sprite<MovementAnimations> Animation { get; set; }
 
-        public BigBongus(String name)
+        public BigBongus(String name) : base(name)
         {
 
             //Create the player
@@ -49,7 +46,7 @@ namespace Mucho_Mungus.Entities
 
         public override void onRemovedFromScene()
         {
-            this.removeComponent<PlayerController>();
+            this.removeComponent<NPCMover>();
             this.removeComponent<Sprite>();
             this.removeComponent<TiledMapMover>();
             this.removeComponent<BoxCollider>();

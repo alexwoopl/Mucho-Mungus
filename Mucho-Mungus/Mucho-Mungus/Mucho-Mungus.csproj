@@ -49,12 +49,11 @@
     <Compile Include="Entities\Actions\MovementAnimations.cs" />
     <Compile Include="Entities\BigBongus.cs" />
     <Compile Include="Entities\Constants\EntityNames.cs" />
-    <Compile Include="Entities\ICharacter.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\PlayerController.cs" />
+    <Compile Include="Components\PlayerMover.cs" />
     <Compile Include="Scenes\ExtendedScene.cs" />
     <Compile Include="Scenes\Home.cs" />
     <Compile Include="Scenes\Constants\MapLayerNames.cs" />
