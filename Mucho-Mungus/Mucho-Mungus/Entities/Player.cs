@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mucho_Mungus.Components;
+using Mucho_Mungus.Components.EntityMovement;
+using Mucho_Mungus.Constants;
 using Mucho_Mungus.Entities.Actions;
 using Mucho_Mungus.Entities.Constants;
 using Mucho_Mungus.Scenes.Constants;
@@ -16,12 +18,14 @@ namespace Mucho_Mungus.Entities
     public class Player : Entity
     {
 
+
+        public static int width = 16, height = 16;
+
         private Sprite<MovementAnimations> Animation { get; set; }
 
         public Player(String name) : base(name)
         {
-
-            //Create the player
+            
             position = new Vector2(200, 200);
 
             //Allow us to move between areas
@@ -43,6 +47,8 @@ namespace Mucho_Mungus.Entities
             var collisions = scene.findEntity(EntityNames.Map).getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>(MapLayerNames.Blockers);
             this.addComponent(new TiledMapMover(collisions));
             this.addComponent(new BoxCollider(12, 16));
+
+            this.addComponent<Interactor>();
 
 
             //Set as camera focus
@@ -69,12 +75,13 @@ namespace Mucho_Mungus.Entities
             
 
             // fetch a Subtexture from the atlas. A Subtexture consists of the Texture2D and the rect on the Texture2D this particular image ended up
-            var subtexture = Subtexture.subtexturesFromAtlas(textureAtlas, 16, 16);
+            var subtexture = Subtexture.subtexturesFromAtlas(textureAtlas, width, height);
             return subtexture;
         }
 
         private void SetUpAnimations(List<Subtexture> subtexture)
         {
+            Animation.renderLayer = (int)RenderLayerIds.First;
             Animation.addAnimation(MovementAnimations.Down, new SpriteAnimation(new List<Subtexture>()
             {
                 subtexture[0],

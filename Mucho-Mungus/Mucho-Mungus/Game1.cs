@@ -13,7 +13,7 @@ namespace Mucho_Mungus
         //GraphicsDeviceManager graphics;
         //SpriteBatch spriteBatch;
 
-        public Game1() : base(width: 1280, height: 768, isFullScreen: false, enableEntitySystems: false)
+        public Game1() : base()
         {
 
         }

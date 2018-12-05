@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mucho_Mungus.Components
+namespace Mucho_Mungus.Components.EntityMovement
 {
     public abstract class EntityMover : Component, IUpdatable
     {
         protected Sprite<MovementAnimations> animation;
+
+        private bool paused = false;
 
 
         protected TiledMapMover mover;
@@ -43,11 +45,23 @@ namespace Mucho_Mungus.Components
 
         public void update()
         {
-            DecideToPauseOrPlayAnimations();
-            MoveAndAnimate();
+            if (!paused) {
+                DecideToPauseOrPlayAnimations();
+                MoveAndAnimate();
+            }
         }
 
         internal abstract void MoveAndAnimate();
         internal abstract void DecideToPauseOrPlayAnimations();
+
+        public void pauseMovement()
+        {
+            paused = true;
+        }
+
+        public void resumeMovement()
+        {
+            paused = false;
+        }
     }
 }

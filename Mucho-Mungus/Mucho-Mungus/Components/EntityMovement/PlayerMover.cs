@@ -6,7 +6,7 @@ using Nez;
 using Nez.Sprites;
 using Nez.Tiled;
 
-namespace Mucho_Mungus
+namespace Mucho_Mungus.Components.EntityMovement
 {
     internal class PlayerMover : EntityMover
     {

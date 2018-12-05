@@ -44,16 +44,20 @@
   <ItemGroup>
     <Compile Include="Components\AreaTransitioner.cs" />
     <Compile Include="Components\CameraMover.cs" />
-    <Compile Include="Components\EntityMover.cs" />
-    <Compile Include="Components\NPCMover.cs" />
+    <Compile Include="Components\EntityMovement\EntityMover.cs" />
+    <Compile Include="Components\Interactable.cs" />
+    <Compile Include="Components\Interactor.cs" />
+    <Compile Include="Components\EntityMovement\NPCMover.cs" />
+    <Compile Include="Constants\RenderLayerIds.cs" />
     <Compile Include="Entities\Actions\MovementAnimations.cs" />
     <Compile Include="Entities\BigBongus.cs" />
     <Compile Include="Entities\Constants\EntityNames.cs" />
+    <Compile Include="Entities\Constants\EntityTags.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\PlayerMover.cs" />
+    <Compile Include="Components\EntityMovement\PlayerMover.cs" />
     <Compile Include="Scenes\ExtendedScene.cs" />
     <Compile Include="Scenes\Home.cs" />
     <Compile Include="Scenes\Constants\MapLayerNames.cs" />

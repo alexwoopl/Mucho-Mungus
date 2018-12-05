@@ -5,7 +5,7 @@ using Nez.AI.Pathfinding;
 using Nez.Sprites;
 using System.Collections.Generic;
 
-namespace Mucho_Mungus.Components
+namespace Mucho_Mungus.Components.EntityMovement
 {
     public class NPCMover : EntityMover
     {
@@ -72,7 +72,7 @@ namespace Mucho_Mungus.Components
             }
             else
             {
-                switchTargetPosition();
+                //switchTargetPosition();
                 velocity.X = 0;
                 velocity.Y = 0;
             }

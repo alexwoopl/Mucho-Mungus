@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Mucho_Mungus.Components;
+using Mucho_Mungus.Components.EntityMovement;
+using Mucho_Mungus.Constants;
 using Mucho_Mungus.Entities.Actions;
 using Mucho_Mungus.Entities.Constants;
 using Mucho_Mungus.Scenes.Constants;
@@ -19,9 +22,8 @@ namespace Mucho_Mungus.Entities
 
         public BigBongus(String name) : base(name)
         {
-
-            //Create the player
-            position = new Microsoft.Xna.Framework.Vector2(150, 150);
+            
+            position = new Vector2(150, 150);
 
             //Allow us to move between areas
             this.addComponent<AreaTransitioner>();
@@ -41,6 +43,10 @@ namespace Mucho_Mungus.Entities
             var collisions = scene.findEntity(EntityNames.Map).getComponent<TiledMapComponent>().tiledMap.getLayer<TiledTileLayer>(MapLayerNames.Blockers);
             this.addComponent(new TiledMapMover(collisions));
             this.addComponent(new BoxCollider(12, 16));
+
+            this.addComponent<Interactable>();
+            this.setTag((int)EntityTags.Interactable);
+
 
         }
 
@@ -68,6 +74,7 @@ namespace Mucho_Mungus.Entities
 
         private void SetUpAnimations(List<Subtexture> subtexture)
         {
+            Animation.renderLayer = (int)RenderLayerIds.Second;
             Animation.addAnimation(MovementAnimations.Down, new SpriteAnimation(new List<Subtexture>()
             {
                 subtexture[3],
