@@ -42,11 +42,17 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components\AreaTransitioner.cs" />
+    <Compile Include="Components\EntityMovement\AreaTransitioner.cs" />
+    <Compile Include="Components\Interactions\BaseConvoPoint.cs" />
+    <Compile Include="Components\Interactions\BigBongoSecondConvo.cs" />
+    <Compile Include="Components\Interactions\BigBongusDefaultConvo.cs" />
     <Compile Include="Components\CameraMover.cs" />
+    <Compile Include="Components\Interactions\Conversation.cs" />
+    <Compile Include="Components\Interactions\IConvoPoint.cs" />
     <Compile Include="Components\EntityMovement\EntityMover.cs" />
-    <Compile Include="Components\Interactable.cs" />
-    <Compile Include="Components\Interactor.cs" />
+    <Compile Include="Components\Interactions\IConversation.cs" />
+    <Compile Include="Components\Interactions\Interactable.cs" />
+    <Compile Include="Components\Interactions\Interactor.cs" />
     <Compile Include="Components\EntityMovement\NPCMover.cs" />
     <Compile Include="Constants\RenderLayerIds.cs" />
     <Compile Include="Entities\Actions\MovementAnimations.cs" />

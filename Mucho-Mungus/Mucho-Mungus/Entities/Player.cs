@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Mucho_Mungus.Components;
 using Mucho_Mungus.Components.EntityMovement;
+using Mucho_Mungus.Components.Interactions;
 using Mucho_Mungus.Constants;
 using Mucho_Mungus.Entities.Actions;
 using Mucho_Mungus.Entities.Constants;
@@ -110,6 +111,18 @@ namespace Mucho_Mungus.Entities
                 subtexture[26],
             }));
         }
+
+        public void disableActions()
+        {
+            getComponent<EntityMover>().pauseMovement();
+            getComponent<Interactor>().blockNewInteractions();
+        }
+        public void enableActions()
+        {
+            getComponent<EntityMover>().resumeMovement();
+            getComponent<Interactor>().allowNewInteractions();
+        }
+
     }
 
 }

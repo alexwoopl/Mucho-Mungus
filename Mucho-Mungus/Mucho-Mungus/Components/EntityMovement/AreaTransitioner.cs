@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mucho_Mungus.Components
+namespace Mucho_Mungus.Components.EntityMovement
 {
     public class AreaTransitioner : Component
     {

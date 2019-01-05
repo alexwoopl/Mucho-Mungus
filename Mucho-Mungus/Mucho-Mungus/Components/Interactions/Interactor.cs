@@ -9,16 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mucho_Mungus.Components
+namespace Mucho_Mungus.Components.Interactions
 {
     public class Interactor : Component, IUpdatable
     {
 
+        //This is controlled by the interactable as only it knows when its finished.
+        private Boolean allowNewInteraction = true;
 
-
+        
         public void update()
         {
-            if (Input.isKeyPressed(Keys.E))
+            if (Input.isKeyPressed(Keys.E) && allowNewInteraction)
             {
                 var currentPostion = this.entity.position;
                 
@@ -30,15 +32,22 @@ namespace Mucho_Mungus.Components
                 {
                     return;
                 }
-
-                entity.getComponent<EntityMover>().pauseMovement();
-
+                
                 var interactable = closestEntity.getComponent<Interactable>();
 
                 interactable.interact(entity);
 
             }
             
+        }
+
+        public void blockNewInteractions()
+        {
+            allowNewInteraction = false;
+        }
+        public void allowNewInteractions()
+        {
+            allowNewInteraction = true;
         }
 
         private Entity getClosestEntity(EntityList entitiesInThisScene)
