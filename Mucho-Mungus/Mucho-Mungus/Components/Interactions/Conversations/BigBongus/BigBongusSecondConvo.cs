@@ -7,9 +7,9 @@ using Mucho_Mungus.Entities;
 using Nez;
 using Nez.UI;
 
-namespace Mucho_Mungus.Components.Interactions
+namespace Mucho_Mungus.Components.Interactions.Conversations.BigBongus
 {
-    public class BigBongoSecondConvo : BaseConvoPoint
+    public class BigBongusSecondConvo : BaseConvoPoint
     {
         public override string text {
             get => "Pet pet, there you go";

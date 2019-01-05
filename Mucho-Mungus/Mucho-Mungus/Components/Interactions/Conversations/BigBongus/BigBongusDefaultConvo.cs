@@ -8,7 +8,7 @@ using Mucho_Mungus.Entities;
 using Nez;
 using Nez.UI;
 
-namespace Mucho_Mungus.Components.Interactions
+namespace Mucho_Mungus.Components.Interactions.Conversations.BigBongus
 {
     public class BigBongusDefaultConvo : BaseConvoPoint
     {
@@ -36,7 +36,7 @@ namespace Mucho_Mungus.Components.Interactions
                 table.removeElement(dialog);
                 //Create the new one and use the next convo point.
                 Dialog newDialog = Conversation.createDefaultDialogBox(interactable.name);
-                BigBongoSecondConvo nextPoint = new BigBongoSecondConvo();
+                BigBongusSecondConvo nextPoint = new BigBongusSecondConvo();
                 nextPoint.addConvoContent(newDialog, interactor, interactable, table);
             };
             dialog.add(getPetButton);

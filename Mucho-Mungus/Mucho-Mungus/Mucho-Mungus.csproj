@@ -44,8 +44,8 @@
   <ItemGroup>
     <Compile Include="Components\EntityMovement\AreaTransitioner.cs" />
     <Compile Include="Components\Interactions\BaseConvoPoint.cs" />
-    <Compile Include="Components\Interactions\BigBongoSecondConvo.cs" />
-    <Compile Include="Components\Interactions\BigBongusDefaultConvo.cs" />
+    <Compile Include="Components\Interactions\Conversations\BigBongus\BigBongusSecondConvo.cs" />
+    <Compile Include="Components\Interactions\Conversations\BigBongus\BigBongusDefaultConvo.cs" />
     <Compile Include="Components\CameraMover.cs" />
     <Compile Include="Components\Interactions\Conversation.cs" />
     <Compile Include="Components\Interactions\IConvoPoint.cs" />
