@@ -36,9 +36,10 @@ namespace Mucho_Mungus.Components.EntityMovement
 
         public Point getGridPosition()
         {
+
             var currentPosition = entity.position.ToPoint();
-            currentPosition.X = currentPosition.X / 16;
-            currentPosition.Y = (currentPosition.Y / 16) - 1;
+            currentPosition.X = (currentPosition.X - 8) / 16;
+            currentPosition.Y = (currentPosition.Y - 8) / 16;
             return currentPosition;
         }
 

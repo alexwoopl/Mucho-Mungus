@@ -22,7 +22,7 @@ namespace Mucho_Mungus.Components.Interactions
             var exitButton = new TextButton("Bye!", skin);
             exitButton.onClicked += butt =>
             {
-                dialog.hide();
+                dialog.remove();
                 interactable.getComponent<EntityMover>().resumeMovement();
                 interactor.enableActions();
             };

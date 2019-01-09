@@ -57,8 +57,12 @@
     <Compile Include="Constants\RenderLayerIds.cs" />
     <Compile Include="Entities\Actions\MovementAnimations.cs" />
     <Compile Include="Entities\BigBongus.cs" />
+    <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Constants\EntityNames.cs" />
     <Compile Include="Entities\Constants\EntityTags.cs" />
+    <Compile Include="Entities\ICharacter.cs" />
+    <Compile Include="Entities\Munguses\BaseMungus.cs" />
+    <Compile Include="Entities\Munguses\Spider.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -139,6 +143,14 @@
     <Content Include="Content\ball.png" />
     <Content Include="Content\basictiles.png" />
     <Content Include="Content\characters.png" />
+    <Content Include="Content\Characters\Bat.png" />
+    <Content Include="Content\Characters\Ghost.png" />
+    <Content Include="Content\Characters\Man.png" />
+    <Content Include="Content\Characters\NakedMan.png" />
+    <Content Include="Content\Characters\Skeleton.png" />
+    <Content Include="Content\Characters\Slime.png" />
+    <Content Include="Content\Characters\Spider.png" />
+    <Content Include="Content\Characters\Woman.png" />
     <Content Include="Content\dead.png" />
     <Content Include="Content\fontlarge.png" />
     <Content Include="Content\fontsmall1.gif" />
@@ -146,7 +158,6 @@
     <Content Include="Content\things.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Characters\" />
     <Folder Include="Content\Objects\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

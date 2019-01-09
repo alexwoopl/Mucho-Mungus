@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Mucho_Mungus.Components;
+using Mucho_Mungus.Entities;
 using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.Sprites;
 using Nez.Tiled;
+using System;
 
 namespace Mucho_Mungus.Components.EntityMovement
 {
@@ -61,6 +63,23 @@ namespace Mucho_Mungus.Components.EntityMovement
             }
 
             mover.move(velocity * Time.deltaTime, collider, cs);
+
+            if (((Player)entity).pet != null) {
+
+                if (Math.Abs(entity.position.X - ((Player)entity).pet.position.X) > 16 ||
+                    Math.Abs(entity.position.Y - ((Player)entity).pet.position.Y) > 16) {
+
+                    Point targetPosition = entity.position.ToPoint();
+                    targetPosition.X = (targetPosition.X - 8) / 16;
+                    targetPosition.Y = (targetPosition.Y - 8) / 16;
+
+                    ((Player)entity).pet.changeTargetPosition(targetPosition);
+                }
+                if (Math.Abs(entity.position.X - ((Player)entity).pet.position.X) > 64 ||
+                    Math.Abs(entity.position.Y - ((Player)entity).pet.position.Y) > 64) {
+                    ((Player)entity).pet.position = entity.position;
+                }
+            }
         }
 
         internal override void DecideToPauseOrPlayAnimations()

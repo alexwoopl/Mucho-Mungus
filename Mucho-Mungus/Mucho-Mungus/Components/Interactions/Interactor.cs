@@ -52,10 +52,13 @@ namespace Mucho_Mungus.Components.Interactions
 
         private Entity getClosestEntity(EntityList entitiesInThisScene)
         {
+            //Convert this entity to a player because it always will be.
+            var player = (Player)this.entity;
+
             foreach (Entity entity in entitiesInThisScene.entitiesWithTag((int)EntityTags.Interactable)){
                 //This couples to the player class we might wanna solve it later
-                if (entity.position.X > (this.entity.position.X - Player.width) && entity.position.X < (this.entity.position.X + Player.width) &&
-                    entity.position.Y > (this.entity.position.Y - Player.height) && entity.position.Y < (this.entity.position.Y + Player.height))
+                if (entity.position.X > (player.position.X - player.width) && entity.position.X < (player.position.X + player.width) &&
+                    entity.position.Y > (player.position.Y - player.height) && entity.position.Y < (player.position.Y + player.height))
                 {
                     return entity;
                 }

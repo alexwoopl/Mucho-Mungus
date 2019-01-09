@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Mucho_Mungus.Entities;
 using Mucho_Mungus.Entities.Actions;
 using Nez;
 using Nez.AI.Pathfinding;
@@ -10,10 +11,10 @@ namespace Mucho_Mungus.Components.EntityMovement
     public class NPCMover : EntityMover
     {
 
-        public float speed = 50f;
+        public float speed = 125f;
+
+        private Character npc;
         
-        //arbitrary lets fix this up later.
-        Point targetPosition = new Point(16, 15);
 
         public NPCMover(Sprite<MovementAnimations> animation) : base(animation)
         {
@@ -23,12 +24,13 @@ namespace Mucho_Mungus.Components.EntityMovement
         internal override void MoveAndAnimate()
         {
 
+            npc = (Character)entity;
             Point currentPosition = getGridPosition();
-            List<Point> pathToTargetPosition = FindAStarPath(currentPosition, targetPosition);
+            List<Point> pathToTargetPosition = FindAStarPath(currentPosition, npc.targetPosition);
 
-            if (pathToTargetPosition != null && currentPosition != targetPosition)
+            if (pathToTargetPosition != null && currentPosition != npc.targetPosition)
             {
-                if (currentPosition.X < pathToTargetPosition[1].X)
+                if (currentPosition.X * 16 < pathToTargetPosition[1].X * 16)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Right))
                     {
@@ -36,7 +38,7 @@ namespace Mucho_Mungus.Components.EntityMovement
                     }
                     velocity.X = speed;
                 }
-                else if (currentPosition.X > pathToTargetPosition[1].X)
+                else if (currentPosition.X * 16 > pathToTargetPosition[1].X * 16)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Left))
                     {
@@ -49,7 +51,7 @@ namespace Mucho_Mungus.Components.EntityMovement
                     velocity.X = 0;
                 }
 
-                if (currentPosition.Y < pathToTargetPosition[1].Y)
+                if (currentPosition.Y * 16 < pathToTargetPosition[1].Y * 16)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Down))
                     {
@@ -57,7 +59,7 @@ namespace Mucho_Mungus.Components.EntityMovement
                     }
                     velocity.Y = speed;
                 }
-                else if (currentPosition.Y > pathToTargetPosition[1].Y)
+                else if (currentPosition.Y * 16 > pathToTargetPosition[1].Y * 16)
                 {
                     if (!animation.isAnimationPlaying(MovementAnimations.Up))
                     {
@@ -72,7 +74,6 @@ namespace Mucho_Mungus.Components.EntityMovement
             }
             else
             {
-                //switchTargetPosition();
                 velocity.X = 0;
                 velocity.Y = 0;
             }
@@ -86,24 +87,7 @@ namespace Mucho_Mungus.Components.EntityMovement
             var path = graph.search(currentPosition, targetPosition);
             return path;
         }
-
-        //Just for some cheap movement, will change later.
-        private void switchTargetPosition()
-        {
-            if(targetPosition.X == 16)
-            {
-                targetPosition.X = 9;
-                targetPosition.Y = 9;
-            }
-            else
-            {
-                targetPosition.X = 16;
-                targetPosition.Y = 17;
-            }
-        }
-
-
-
+        
         internal override void DecideToPauseOrPlayAnimations()
         {
             if (velocity.X == 0 && velocity.Y == 0 )
